@@ -17,6 +17,14 @@ posts = Post.all
   )
 end
 
+puts "#{Post.count} posts before"
+Post.find_or_create_by(title: "This is a unique post title", body: "Very Unique")
+puts "#{Post.count} posts after"
+
+puts "#{Comment.count} comments before"
+Comment.find_or_create_by(body: "Very Unique")
+puts "#{Comment.count} comments after"
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
