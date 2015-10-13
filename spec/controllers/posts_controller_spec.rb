@@ -48,7 +48,7 @@ RSpec.describe PostsController, type: :controller do
 # of post instances will increase by one. Create creates the fields in a post.
   describe "POST create" do
     it "increases the number of Post by 1" do
-      expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}
+      expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post, :count).by(1)
     end
 
     #5 we expect the newly created post to be assigned to @post
