@@ -24,4 +24,10 @@ module RandomData
     letters.shuffle!
     letters[0, rand(3..8)].join
   end
+
+  def random_number
+    rand(4..6).times do
+      rand(1..10)
+    end
+  end
 end
