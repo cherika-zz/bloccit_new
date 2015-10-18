@@ -1,11 +1,19 @@
 require 'rails_helper'
+include RandomData
 
 RSpec.describe Post, type: :model do
 
-  #1 creating a new instance of the Post class and naming it post. The let
+  #1 old comment - creating a new instance of the Post class and naming it post. The let
   # method makes it available throughout the rest of the spec, so we only need
   # to instantiate it once.
-  let(:post) {Post.create!(title: "New Post Title", body: "New Post Body")}
+
+  #3, we create a parent topic for post.
+  let(:topic) {Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)}
+
+  #4, we associate post with topic with topic.posts.create!. This is a chained method call which creates a post for a given topic.
+  let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
+
+  it { should belong_to(:topic)}
 
   describe "attributes" do
 
