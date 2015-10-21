@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :sponsored_posts
   end
 
-  resources :users, only: [:new, :create]
+  resources :users
 
   resources :questions
 
@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'welcome/contact'
 
   get 'welcome/faq'
+
+  post 'users/confirm' => 'users#confirm'
 
   root to: 'welcome#index'
 end
