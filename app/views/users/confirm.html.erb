@@ -9,6 +9,7 @@
     <%= button_to "Yes", {:controller => "users", :action => "create", :params => params}, class: 'btn btn-success' %>
   </div>
   <div>
+    <!-- button_to default is post -->
     <%= button_to "No", new_user_path, method: :get, class: 'btn btn-primary' %>
   </div>
 </div>

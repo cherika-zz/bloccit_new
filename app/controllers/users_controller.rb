@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new(user_params)
-    render :confirm
   end
 
   private

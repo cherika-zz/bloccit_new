@@ -49,7 +49,13 @@ RSpec.describe User, type: :model do
 
   describe "capitalize user name" do
     it "should capitalize first and last names" do
-      expect(user).to respond_to(:new_name)
+      user.name = "anna smith"
+      expect(user.new_name).to eq "Anna Smith"
+    end
+
+    it "handles multiple capital letters in a word" do
+      user.name = "Anna McFarrell"
+      expect(user.new_name).to eq "Anna McFarrell"
     end
   end
 end

@@ -3,13 +3,6 @@ class User < ActiveRecord::Base
   before_save {self.email = email.downcase}
   before_save :new_name
 
-  def new_name
-    capitalized_name = []
-    self.name.to_s.split(" ").each do |word|
-      capitalized_name << word.capitalize
-    end
-    self.name = capitalized_name.join(" ")
-  end
   # a regular expression which defines a specific character pattern that we want to match against a string
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -29,4 +22,12 @@ class User < ActiveRecord::Base
             format: {with: EMAIL_REGEX}
 
   has_secure_password
+
+  def new_name
+    capitalized_name = []
+    self.name.to_s.split(" ").each do |word|
+      capitalized_name << "#{word[0].capitalize}#{word[1..-1]}"
+    end
+    self.name = capitalized_name.join(" ")
+  end
 end
