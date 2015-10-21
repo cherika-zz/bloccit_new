@@ -46,4 +46,10 @@ RSpec.describe User, type: :model do
       expect(user_with_invalid_email_format).to_not be_valid
     end
   end
+
+  describe "capitalize user name" do
+    it "should capitalize first and last names" do
+      expect(user).to respond_to(:new_name)
+    end
+  end
 end

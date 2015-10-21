@@ -1,7 +1,15 @@
 class User < ActiveRecord::Base
   # we register an inline callback directly after the before_save callback.
-  before_save { self.email = email.downcase }
+  before_save {self.email = email.downcase}
+  before_save :new_name
 
+  def new_name
+    capitalized_name = []
+    self.name.to_s.split(" ").each do |word|
+      capitalized_name << word.capitalize
+    end
+    self.name = capitalized_name.join(" ")
+  end
   # a regular expression which defines a specific character pattern that we want to match against a string
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
