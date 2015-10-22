@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :advertisements
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   get 'about' => 'welcome#about'
 
   get 'welcome/contact'
