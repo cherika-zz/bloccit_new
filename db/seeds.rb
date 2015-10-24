@@ -1,5 +1,21 @@
 include RandomData
 
+#Create Users
+5.times do
+  user = User.create!(
+  name: RandomData.random_name,
+  email: RandomData.random_email,
+  password: RandomData.random_sentence
+  )
+end
+users = User.all
+
+user = User.first
+user.update_attributes!(
+  email: 'hakobyan.sn@gmail.com',
+  password: 'password'
+)
+
 #Create Topics
 15.times do
   Topic.create!(
@@ -18,11 +34,12 @@ topics = Topic.all
   price: RandomData.random_number
   )
 end
-topics = Topic.all
+sponsored_posts = SponsoredPost.all
 
 # Create Posts
 50.times do
   Post.create!(
+    user: users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
@@ -37,6 +54,7 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
+comments = Comment.all
 
 10.times do
   Advertisement.create!(
@@ -45,7 +63,7 @@ end
     price: RandomData.random_number
   )
 end
-posts = Post.all
+advertisements = Advertisement.all
 
 10.times do
   Question.create!(
@@ -70,3 +88,4 @@ puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} ads created"
 puts "#{Question.count} questions created"
 puts "#{SponsoredPost.count} sponsored posts created"
+puts "#{User.count} users created"

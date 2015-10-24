@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
-  # def index
-  #   @posts = Post.all
-  # end
+  before_action :require_sign_in, except: :show
 
   def show
     @post = Post.find(params[:id])
@@ -14,14 +12,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    # we call Post.new to create a new instance of Post
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
     @topic = Topic.find(params[:topic_id])
+    @post = @topic.posts.build(post_params)
 
-    #35 we assign a topic to a post.
-    @post.topic = @topic
+    @post.user = current_user
 
     if @post.save
       flash[:notice] = "Post was saved."
@@ -39,8 +33,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
+    @post.update_attributes(post_params)
 
     if @post.save
       flash[:notice] = "Post was updated."
@@ -62,5 +55,11 @@ class PostsController < ApplicationController
       flash[:error] = "There was an error deleting your post."
       render :show
     end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
