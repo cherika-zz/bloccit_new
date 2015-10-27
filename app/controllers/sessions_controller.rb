@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def new
+    # no values to initialize
+    # just need the new method so the new view can show
   end
 
   def create

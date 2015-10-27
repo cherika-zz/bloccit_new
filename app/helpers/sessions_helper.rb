@@ -1,5 +1,6 @@
 module SessionsHelper
   def create_session(user)
+    # creating a sessions hash; user_id is the hash key
     session[:user_id] = user.id
   end
 

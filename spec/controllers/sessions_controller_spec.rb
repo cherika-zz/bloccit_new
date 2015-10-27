@@ -21,9 +21,16 @@ RSpec.describe SessionsController, type: :controller do
       expect(assigns(:session)) == my_user.id
     end
 
-    it "does not initialize session due to missing password" do
-      post :create, session: {email: my_user.email}
-      expect(assigns(:session)).to be_nil
+    context "when password is missing" do
+      it "does not initialize session" do
+        post :create, session: {email: my_user.email}
+        expect(assigns(:session)).to be_nil
+      end
+
+      it "renders the new view" do
+        post :create, session: {email: my_user.email}
+        expect(response).to render_template :new
+      end
     end
 
     it "flashes error with bad email address" do
@@ -33,11 +40,6 @@ RSpec.describe SessionsController, type: :controller do
 
     it "renders new with bad email address" do
       post :create, session: {email: "does not exist"}
-      expect(response).to render_template :new
-    end
-
-    it "renders the show view with valid email address" do
-      post :create, session: {email: my_user.email}
       expect(response).to render_template :new
     end
   end
