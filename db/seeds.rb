@@ -24,6 +24,13 @@ member = User.create!(
   role: "member"
 )
 
+moderator = User.create!(
+  name: "Moderator User",
+  email: "moderator@example.com",
+  password: "helloworld",
+  role: "moderator"
+)
+
 user = User.first
 user.update_attributes!(
   email: 'hakobyan.sn@gmail.com',
