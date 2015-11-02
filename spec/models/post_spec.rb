@@ -13,6 +13,9 @@ RSpec.describe Post, type: :model do
   #4, we associate post with topic with topic.posts.create!. This is a chained method call which creates a post for a given topic.
   let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)}
 
+  it { should have_many(:labelings)}
+  it { should have_many(:labels).through(:labelings)}
+
   it { should have_many(:comments) }
   it { should belong_to(:topic)}
   it { should belong_to(:user)}

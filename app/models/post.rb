@@ -3,6 +3,10 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  has_many :labelings, as: :labelable
+
+  has_many :labels, through: :labelings
+
   default_scope { order(created_at: :desc) }
   scope :ordered_by_title, -> { reorder(:title)}
   scope :ordered_by_reverse_created_at, -> { reorder(created_at: :asc)}

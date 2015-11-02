@@ -47,15 +47,15 @@ end
 topics = Topic.all
 
 # Sponsored Posts
-15.times do
-  SponsoredPost.create!(
-  topic: topics.sample,
-  title: RandomData.random_sentence,
-  body: RandomData.random_paragraph,
-  price: RandomData.random_number
-  )
-end
-sponsored_posts = SponsoredPost.all
+# 15.times do
+#   SponsoredPost.create!(
+#   topic: topics.sample,
+#   title: RandomData.random_sentence,
+#   body: RandomData.random_paragraph,
+#   price: RandomData.random_number
+#   )
+# end
+# sponsored_posts = SponsoredPost.all
 
 # Create Posts
 50.times do
@@ -78,22 +78,22 @@ posts = Post.all
 end
 comments = Comment.all
 
-10.times do
-  Advertisement.create!(
-    title: RandomData.random_sentence,
-    copy: RandomData.random_paragraph,
-    price: RandomData.random_number
-  )
-end
-advertisements = Advertisement.all
+# 10.times do
+#   Advertisement.create!(
+#     title: RandomData.random_sentence,
+#     copy: RandomData.random_paragraph,
+#     price: RandomData.random_number
+#   )
+# end
+# advertisements = Advertisement.all
 
-10.times do
-  Question.create!(
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
-  )
-end
-questions = Question.all
+# 10.times do
+#   Question.create!(
+#     title: RandomData.random_sentence,
+#     body: RandomData.random_paragraph
+#   )
+# end
+# questions = Question.all
 
 # puts "#{Post.count} posts before"
 # Post.find_or_create_by(title: "This is a unique post title", body: "Very Unique")
@@ -107,7 +107,7 @@ puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{Advertisement.count} ads created"
-puts "#{Question.count} questions created"
-puts "#{SponsoredPost.count} sponsored posts created"
+# puts "#{Advertisement.count} ads created"
+# puts "#{Question.count} questions created"
+# puts "#{SponsoredPost.count} sponsored posts created"
 puts "#{User.count} users created"
