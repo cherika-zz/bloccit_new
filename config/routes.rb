@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resources :sponsored_posts
   end
 
+  resources :posts, only: [] do
+    resources :comments, only: [:create, :destroy]
+  end
+
   resources :users
 
   resources :questions
