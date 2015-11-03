@@ -1,5 +1,7 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-4">
     <%= render partial: "labels/list", locals: { labels: @post.labels } %>
     <br />
   </div>
@@ -7,7 +9,7 @@
 <br />
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-4">
     <div>
       <h3>Comments</h3>
       <%= render @post.comments %>
