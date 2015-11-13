@@ -8,5 +8,6 @@
       <%= post.comments.count %> Comments
     </small>
 
+    <%= render partial: 'votes/voter', locals: { post: post } %>
   </div>
 </div>
