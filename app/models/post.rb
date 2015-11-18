@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
   after_create :create_vote
+  after_create :create_favorite
 
   has_many :comments, dependent: :destroy
 
@@ -12,7 +13,7 @@ class Post < ActiveRecord::Base
   has_many :labels, through: :labelings
 
   has_many :favorites, dependent: :destroy
-  
+
   default_scope { order('rank DESC') }
   # scope :ordered_by_title, -> { reorder(:title)}
   # scope :ordered_by_reverse_created_at, -> { reorder(created_at: :asc)}
@@ -44,5 +45,10 @@ class Post < ActiveRecord::Base
 
   def create_vote
     user.votes.create(post: self, value: 1)
+  end
+
+  def create_favorite
+    Favorite.create(post: self, user: self.user)
+    FavoriteMailer.new_post(self).deliver_now
   end
 end
