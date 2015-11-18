@@ -1,6 +1,6 @@
 <h1><%= @topic.name %></h1>
 
-<% if user_is_authorized_for_topics? || current_user.moderator%>
+<% if user_is_authorized_for_topics? %>
   <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
 <% end %>
 
@@ -32,7 +32,9 @@
     </div>
 
     <div class="col-md-4">
-      <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
-      <%= link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: 'btn btn-success' %>
+      <% if current_user %>
+        <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+        <%= link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: 'btn btn-success' %>
+      <% end %>
     </div>
 </div>
