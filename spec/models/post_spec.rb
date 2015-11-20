@@ -8,11 +8,9 @@ RSpec.describe Post, type: :model do
   # to instantiate it once.
 
   #3, we create a parent topic for post.
-  let(:topic) {Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)}
-  let(:user) {User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld")}
-  #4, we associate post with topic with topic.posts.create!. This is a chained method call which creates a post for a given topic.
-  let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)}
-
+  let(:topic) {create(:topic)}
+  let(:user) {create(:user)}
+  let(:post) {create(:post)}
   it { should have_many(:labelings)}
   it { should have_many(:labels).through(:labelings)}
 
