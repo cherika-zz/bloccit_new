@@ -8,4 +8,9 @@ FactoryGirl.define do
     user
     rank 0.0
   end
+
+  factory :topic do
+    name RandomData.random_sentence
+    description RandomData.random_paragraph
+  end
 end
